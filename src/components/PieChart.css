@@ -1,0 +1,45 @@
+section{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.tableContainer {
+  margin-top: 24px;
+}
+
+td, th{
+  border: 1px solid black;
+  text-align: center;
+  padding: 4px;
+  font-size: 10px;
+}
+
+.ChartWidth{
+  width: 320px;
+}
+
+@media screen and (min-width: 500px) {
+  .ChartWidth{
+    width: 490px;
+  }
+    
+  td, th {
+    padding: 16px;
+    font-size: 14px;
+  }
+
+
+}
+
+@media screen and (min-width:1024px){
+  section{
+    flex-direction: row;
+  }
+  .ChartWidth{
+    width: 500px;
+  }
+
+}

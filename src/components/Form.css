@@ -1,0 +1,67 @@
+.inputClass {
+  padding: 12px 36px;
+  margin-bottom: 12px;
+}
+
+.inputError {
+  border: 1px solid red;
+}
+
+.inputMsgError {
+  color: red;
+  font-size: 12px;
+  animation: shake 0.5s linear 3;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0px);  
+  }
+  50% {
+    transform: translateX(10px);  
+  }
+  100%{
+    transform: translateX(0px); 
+  }
+}
+
+.inputButton {
+  padding: 12px 24px;
+  color: white;
+  background: transparent;
+  border: 1px solid white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.inputButton:hover{
+  color: rgb(1, 164, 225);
+  border-color: rgb(1, 164, 225);
+  background: white;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  background-color: rgb(1, 164, 225);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  flex-direction: column;
+}
+
+@media screen and (min-width:768px) {
+  form {
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  .inputClass {
+    margin-right: 12px;
+    margin-bottom: 0px;
+  }
+}
