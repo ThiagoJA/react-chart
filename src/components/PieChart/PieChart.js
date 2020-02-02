@@ -67,7 +67,7 @@ const PieChart = () => {
           color="#00BFFF"
           height={300}
           width={300}
-          timeout={3000}
+          timeout={100000}
         /></div>}
       <section className="container">
         <div className="tableContainer">
