@@ -1,13 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import classnames from 'classnames';
-import { PostEmployees } from '../helpers/Services';
+import { PostEmployees } from '../../helpers/Services';
 import './Form.css';
 
-const Form = () => {
+const Form = ({handleUpdate}) => {
+  const handleChange = handleUpdate;
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = data => {
-    PostEmployees(data)
+    PostEmployees(data, handleChange)
   };
   const firstInputClasses = classnames('inputClass', {
     inputError:errors.firstName

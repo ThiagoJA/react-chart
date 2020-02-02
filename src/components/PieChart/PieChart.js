@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
 import _get from 'lodash/get';
 import _map from 'lodash/map';
-import { GetEmployees } from '../helpers/Services';
+import { GetEmployees } from '../../helpers/Services';
 import './PieChart.css';
 
 const GetEmployeesParticipation = (employees, setSeries) => {
@@ -39,12 +39,11 @@ const RenderRows = (employees) => {
   })
 }
 
-const PieChart = () => {
+const PieChart = ({handleUpdate}) => {
   const [emp, setEmp] = useState([''])
   const [options, setOptions] = useState({})
   const [series, setSeries] = useState([])
   const employees = _get(emp, 'data.employees', []);
-
   useEffect(() => {
     GetEmployees(setEmp)
   }, [])

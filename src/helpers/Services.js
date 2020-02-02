@@ -5,11 +5,8 @@ export const GetEmployees = (setFunc) => {
   return void 0;
 }
 
-export const PostEmployees = (params) => {
-  axios.post('https://node-employees.herokuapp.com/employees', params)
-  setTimeout(()=>{
-    window.location.reload();
-
-  },1000)
+export const PostEmployees = (params, handleChange) => {
+  handleChange(true)
+  axios.post('https://node-employees.herokuapp.com/employees', params).then(() => {handleChange(false)})
   return void 0;
 }
