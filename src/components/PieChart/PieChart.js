@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
+import Loader from 'react-loader-spinner';
+import classnames from 'classnames';
 import _get from 'lodash/get';
 import _map from 'lodash/map';
 import { GetEmployees } from '../../helpers/Services';
@@ -24,13 +26,13 @@ const GetEmployeesNames = (employees, setOptions) => {
 }
 
 const RenderRows = (employees) => {
-  return _map(employees, (employee,i) => {
+  return _map(employees, (employee, i) => {
     const firstName = _get(employee, 'firstName', '')
     const lastName = _get(employee, 'lastName', '')
     const empParticipation = _get(employee, 'participation', 0);
     return (
       <tr key={`employee-${i}`}>
-        <td>{i+1}</td>
+        <td>{i + 1}</td>
         <td>{firstName}</td>
         <td>{lastName}</td>
         <td>{empParticipation}</td>
@@ -39,13 +41,14 @@ const RenderRows = (employees) => {
   })
 }
 
-const PieChart = ({handleUpdate}) => {
-  const [emp, setEmp] = useState([''])
+const PieChart = () => {
+  const [emp, setEmp] = useState([])
   const [options, setOptions] = useState({})
   const [series, setSeries] = useState([])
   const employees = _get(emp, 'data.employees', []);
+  const loaderClasses = classnames('loader', {'dn':employees.length})
   useEffect(() => {
-    GetEmployees(setEmp)
+    GetEmployees(setEmp);
   }, [])
 
   useEffect(() => {
@@ -57,26 +60,36 @@ const PieChart = ({handleUpdate}) => {
   }, [employees])
 
   return (
-    <section className="container">
-      <div className="tableContainer">
-        <table cellPadding={0} cellSpacing={0}>
-          <thead>
-          <tr>
-            <th></th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Participation</th>
-          </tr>
-          </thead>
-          <tbody>
-            {RenderRows(employees)}
-          </tbody>
-        </table>
-      </div>
-      <div className="donut">
-        <Chart options={options} series={series} type="donut" className="ChartWidth" />
-      </div>
-    </section>
+    <>
+      {emp &&
+        <div className={loaderClasses}><Loader
+          type="Oval"
+          color="#00BFFF"
+          height={300}
+          width={300}
+          timeout={3000}
+        /></div>}
+      <section className="container">
+        <div className="tableContainer">
+          <table cellPadding={0} cellSpacing={0}>
+            <thead>
+              <tr>
+                <th></th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Participation</th>
+              </tr>
+            </thead>
+            <tbody>
+              {RenderRows(employees)}
+            </tbody>
+          </table>
+        </div>
+        <div className="donut">
+          <Chart options={options} series={series} type="donut" className="ChartWidth" />
+        </div>
+      </section>
+    </>
   );
 }
 

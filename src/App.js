@@ -9,6 +9,7 @@ function App() {
   const handleUpdate = (change) => {
     setSubmitting(change)
   }
+
   return (
     <>
       {submitting ?
@@ -18,10 +19,10 @@ function App() {
         color="#00BFFF"
         height={300}
         width={300}
-        timeout={3000} //3 secs
+        timeout={3000}
 
      />
-     </div> : <Home handleUpdate={handleUpdate}/>}
+     </div> : <Home handleUpdate={handleUpdate} />}
     </>
   );
 }
